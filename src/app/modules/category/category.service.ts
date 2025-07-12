@@ -7,7 +7,10 @@ const createCategory = async (payload: TCategory) => {
     const isCategoryExists = await Category.findOne(payload);
 
     if (isCategoryExists) {
-        throw new ApiError(status.CONFLICT, 'This Category is already created');
+        throw new ApiError(
+            status.CONFLICT,
+            `${payload.name} is already exits in categories`,
+        );
     }
 
     const result = await Category.create(payload);
