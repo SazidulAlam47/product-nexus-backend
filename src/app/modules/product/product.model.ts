@@ -27,11 +27,13 @@ const productSchema = new Schema<TProduct>(
         status: {
             type: String,
             enum: productStatus,
+            default: 'In Stock',
             required: true,
         },
         productCode: {
             type: String,
             required: true,
+            unique: true,
         },
         category: {
             type: Schema.Types.ObjectId,

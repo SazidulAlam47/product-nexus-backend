@@ -26,7 +26,7 @@ const getCategoryById = catchAsync(async (req, res) => {
     const result = await CategoryServices.getCategoryById(id);
     sendResponse(res, {
         statusCode: status.OK,
-        message: 'All Categories fetched successfully',
+        message: 'Category fetched successfully',
         data: result,
     });
 });

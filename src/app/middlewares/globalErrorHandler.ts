@@ -4,6 +4,8 @@ import { ErrorRequestHandler } from 'express';
 import status from 'http-status';
 import { ZodError } from 'zod';
 import { duplicateErrorRegex } from '../constant/error';
+import formatZodErrorMessage from '../utils/formatZodErrorMessage';
+import config from '../config';
 
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     let statusCode: number = err?.statusCode || status.INTERNAL_SERVER_ERROR;
@@ -12,12 +14,15 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
     let match: RegExpMatchArray | undefined;
 
-    if (err instanceof ZodError || err?.name === 'ValidationError') {
+    if (err instanceof ZodError) {
+        statusCode = status.UNPROCESSABLE_ENTITY;
+        message = formatZodErrorMessage(err);
+    } else if (err?.name === 'ValidationError') {
         statusCode = status.UNPROCESSABLE_ENTITY;
         message = 'Validation Error';
     } else if (err?.name === 'CastError') {
         statusCode = status.BAD_REQUEST;
-        message = 'Invalid ID';
+        message = `${err.value} is not a valid ID`;
     } else if ((match = err?.message.match(duplicateErrorRegex))) {
         statusCode = status.CONFLICT;
         message = `${match[2]} is already exits in ${match[1]}`;
@@ -27,6 +32,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
         success: false,
         message,
         error,
+        stack: config.NODE_ENV === 'development' ? err?.stack : undefined,
     });
 };
 
