@@ -10,6 +10,13 @@ const createProduct = z.object({
     category: z.string(),
 });
 
+const updateProduct = z.object({
+    status: z.enum(productStatus).optional(),
+    description: z.string().optional(),
+    discount: z.number().optional(),
+});
+
 export const ProductValidations = {
     createProduct,
+    updateProduct,
 };

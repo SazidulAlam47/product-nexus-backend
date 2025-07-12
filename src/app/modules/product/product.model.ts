@@ -43,13 +43,17 @@ const productSchema = new Schema<TProduct>(
     },
     {
         timestamps: true,
+        toJSON: {
+            virtuals: true,
+        },
     },
 );
 
 productSchema.virtual('finalPrice').get(function () {
     const price = this.price || 0;
     const discount = this.discount || 0;
-    return price - (price * discount) / 100;
+    const finalPrice = price - (price * discount) / 100;
+    return parseFloat(finalPrice.toFixed(2));
 });
 
 export const Product = model<TProduct>('Product', productSchema);

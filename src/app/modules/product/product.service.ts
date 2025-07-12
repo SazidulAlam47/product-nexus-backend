@@ -53,8 +53,24 @@ const getProductById = async (id: string) => {
     return result;
 };
 
+const updateProductById = async (
+    id: string,
+    payload: Partial<Pick<TProduct, 'category' | 'description' | 'discount'>>,
+) => {
+    const product = await Product.findById(id);
+
+    if (!product) {
+        throw new ApiError(status.NOT_FOUND, 'Product not found');
+    }
+
+    const result = await Product.findByIdAndUpdate(id, payload, { new: true });
+
+    return result;
+};
+
 export const ProductServices = {
     createProduct,
     getAllProducts,
     getProductById,
+    updateProductById,
 };
