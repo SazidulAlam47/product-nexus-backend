@@ -6,6 +6,8 @@ import { TProduct } from './product.interface';
 import generateProductCode from '../../utils/generateProductCode';
 import sendImageToCloudinary from '../../utils/sendImageToCloudinary';
 import { Product } from './product.model';
+import { productSearchableFields } from './product.constant';
+import searchQuery from '../../utils/searchQuery';
 
 const createProduct = async (payload: TProduct, file: TFile) => {
     const category = await Category.findById(payload.category);
@@ -40,9 +42,16 @@ const createProduct = async (payload: TProduct, file: TFile) => {
     return result;
 };
 
-const getAllProducts = async () => {
-    const result = await Product.find().populate('category');
-    return result;
+const getAllProducts = async (query: Record<string, unknown>) => {
+    const baseProductQuery = Product.find().populate('category');
+
+    const filteredProductQuery = searchQuery(
+        baseProductQuery,
+        productSearchableFields,
+        query.search as string | undefined,
+    );
+
+    return await filteredProductQuery;
 };
 
 const getProductById = async (id: string) => {
