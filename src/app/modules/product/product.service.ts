@@ -43,15 +43,28 @@ const createProduct = async (payload: TProduct, file: TFile) => {
 };
 
 const getAllProducts = async (query: Record<string, unknown>) => {
-    const baseProductQuery = Product.find().populate('category');
+    let baseProductQuery = Product.find().populate('category');
 
-    const filteredProductQuery = searchQuery(
+    if (query.category) {
+        const category = await Category.findOne({ name: query.category });
+
+        if (!category) {
+            throw new ApiError(
+                status.NOT_FOUND,
+                `Category '${query.category}' not found. Please provide a valid category name.`,
+            );
+        }
+
+        baseProductQuery = baseProductQuery.find({ category: category._id });
+    }
+
+    baseProductQuery = searchQuery(
         baseProductQuery,
         productSearchableFields,
         query.search as string | undefined,
     );
 
-    return await filteredProductQuery;
+    return await baseProductQuery;
 };
 
 const getProductById = async (id: string) => {
