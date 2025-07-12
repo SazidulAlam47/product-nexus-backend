@@ -21,6 +21,16 @@ const createProduct = async (payload: TProduct, file: TFile) => {
     // generate product code
     payload.productCode = generateProductCode(payload.name);
 
+    const isProductExists = await Product.findOne({
+        productCode: payload.productCode,
+    });
+    if (isProductExists) {
+        throw new ApiError(
+            status.CONFLICT,
+            'This product code is already exists',
+        );
+    }
+
     // upload image
     const imgName = payload.name + '-' + Date.now();
     payload.image = await sendImageToCloudinary(imgName, file.path);
@@ -30,6 +40,21 @@ const createProduct = async (payload: TProduct, file: TFile) => {
     return result;
 };
 
+const getAllProducts = async () => {
+    const result = await Product.find().populate('category');
+    return result;
+};
+
+const getProductById = async (id: string) => {
+    const result = await Product.findById(id);
+    if (!result) {
+        throw new ApiError(status.NOT_FOUND, 'Product not found');
+    }
+    return result;
+};
+
 export const ProductServices = {
     createProduct,
+    getAllProducts,
+    getProductById,
 };

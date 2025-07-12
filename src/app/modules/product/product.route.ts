@@ -6,6 +6,9 @@ import { upload } from '../../utils/sendImageToCloudinary';
 
 const router = express.Router();
 
+router.get('/', ProductControllers.getAllProducts);
+router.get('/:id', ProductControllers.getProductById);
+
 router.post(
     '/',
     upload.single('file'),

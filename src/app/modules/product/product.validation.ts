@@ -6,7 +6,7 @@ const createProduct = z.object({
     description: z.string(),
     price: z.number(),
     discount: z.number(),
-    status: z.enum(productStatus),
+    status: z.enum(productStatus).optional(),
     category: z.string(),
 });
 
