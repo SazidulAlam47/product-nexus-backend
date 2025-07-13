@@ -44,6 +44,8 @@ const productSchema = new Schema<TProduct>(
     },
     {
         timestamps: true,
+        _id: true,
+        id: false,
         toJSON: {
             virtuals: true,
         },

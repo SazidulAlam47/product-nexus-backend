@@ -68,7 +68,7 @@ const getAllProducts = async (query: Record<string, unknown>) => {
 };
 
 const getProductById = async (id: string) => {
-    const result = await Product.findById(id);
+    const result = await Product.findById(id).populate('category');
     if (!result) {
         throw new ApiError(status.NOT_FOUND, 'Product not found');
     }
