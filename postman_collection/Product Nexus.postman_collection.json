@@ -1,0 +1,838 @@
+{
+	"info": {
+		"_postman_id": "04b8dfb8-e88d-49aa-a886-f00ebde7b00a",
+		"name": "Product Nexus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34420148"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "create category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Clothing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/categories",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"categories"
+							]
+						},
+						"description": "## Add Category\n\nThis endpoint allows users to create a new category in the system. By sending a POST request to the specified URL, you can add a category that can later be utilized in various parts of the application.\n\n### Request\n\n- **Method**: POST\n    \n- **URL**: `http://167.71.210.71:8000/api/categories`\n    \n\n#### Request Body\n\nThe request body must be in JSON format and should include the following parameter:\n\n- **name** (string, required): The name of the category you wish to create.\n    \n\n**Example Request Body**:\n\n``` json\n{\n  \"name\": \"Clothing\"\n}\n\n ```\n\n### Response\n\nUpon a successful request, the server will respond with a status code of **201 Created** and a JSON object containing the following structure:\n\n- **success** (boolean): Indicates whether the request was successful.\n    \n- **message** (string): A message providing additional information about the request (may be empty).\n    \n- **data** (object): Contains details of the created category with the following fields:\n    \n    - **name** (string): The name of the created category.\n        \n    - **_id** (string): The unique identifier for the category.\n        \n    - **createdAt** (string): Timestamp of when the category was created.\n        \n    - **updatedAt** (string): Timestamp of when the category was last updated.\n        \n    - **__v** (integer): Version key for the category document.\n        \n\n**Example Response**:\n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"name\": \"Clothing\",\n        \"_id\": \"68730d25ac47964047345568\",\n        \"createdAt\": \"2025-07-13T01:34:29.894Z\",\n        \"updatedAt\": \"2025-07-13T01:34:29.894Z\",\n        \"__v\": 0\n    }\n}\n\n ```\n\nThis endpoint is essential for managing categories within the application, allowing for better organization and classification of items."
+					},
+					"response": [
+						{
+							"name": "create category response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Clothing\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/categories",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "204"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cc-AC7N9xwmwVYiDanYY8Bm8mqNHTs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:48:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Category created successfully\",\n    \"data\": {\n        \"name\": \"Clothing\",\n        \"_id\": \"68731082ac47964047345574\",\n        \"createdAt\": \"2025-07-13T01:48:50.488Z\",\n        \"updatedAt\": \"2025-07-13T01:48:50.488Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get all categories",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/categories",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"categories"
+							]
+						},
+						"description": "## Get Categories\n\nThis endpoint retrieves a list of categories from the API. It is useful for fetching available categories that can be used in various parts of the application, such as product categorization or filtering.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://167.71.210.71:8000/api/categories`\n    \n\n### Response\n\nUpon a successful request, the API will return a JSON response with the following structure:\n\n- **success** (boolean): Indicates whether the request was successful.\n    \n- **message** (string): A message providing additional information about the request (can be empty).\n    \n- **data** (array): An array of category objects, each containing:\n    \n    - **_id** (string): The unique identifier for the category.\n        \n    - **name** (string): The name of the category.\n        \n    - **createdAt** (string): Timestamp indicating when the category was created.\n        \n    - **updatedAt** (string): Timestamp indicating when the category was last updated.\n        \n    - **__v** (integer): Version key for the category document.\n        \n\n### Example Response\n\n``` json\n{\n    \"success\": true,\n    \"message\": \"All Categories fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6871f44db91eef951f5365b0\",\n            \"name\": \"Electronics\",\n            \"createdAt\": \"2025-07-12T05:36:13.829Z\",\n            \"updatedAt\": \"2025-07-12T05:36:13.829Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6871f48ab91eef951f5365b8\",\n            \"name\": \"Toys\",\n            \"createdAt\": \"2025-07-12T05:37:14.794Z\",\n            \"updatedAt\": \"2025-07-12T05:37:14.794Z\",\n            \"__v\": 0\n        }\n    ]\n}\n\n ```\n\n### Usage\n\nTo use this endpoint effectively, simply send a GET request to the specified URL. The response will provide you with the necessary information about the available categories in the system."
+					},
+					"response": [
+						{
+							"name": "get all categories response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/categories",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "922"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"39a-W9VnnG+SHLveZNT+bG27KrwrsnE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:47:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"All Categories fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"6871f44db91eef951f5365b0\",\n            \"name\": \"Electronics\",\n            \"createdAt\": \"2025-07-12T05:36:13.829Z\",\n            \"updatedAt\": \"2025-07-12T05:36:13.829Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6871f48ab91eef951f5365b8\",\n            \"name\": \"Toys\",\n            \"createdAt\": \"2025-07-12T05:37:14.794Z\",\n            \"updatedAt\": \"2025-07-12T05:37:14.794Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6871f497b91eef951f5365ba\",\n            \"name\": \"Sports Equipment\",\n            \"createdAt\": \"2025-07-12T05:37:27.241Z\",\n            \"updatedAt\": \"2025-07-12T05:37:27.241Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6871f49eb91eef951f5365bc\",\n            \"name\": \"Groceries\",\n            \"createdAt\": \"2025-07-12T05:37:34.179Z\",\n            \"updatedAt\": \"2025-07-12T05:37:34.179Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"6872f0a628cd83b895e78c99\",\n            \"name\": \"Home Appliances\",\n            \"createdAt\": \"2025-07-12T23:32:54.414Z\",\n            \"updatedAt\": \"2025-07-12T23:32:54.414Z\",\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"68730d25ac47964047345568\",\n            \"name\": \"Clothing\",\n            \"createdAt\": \"2025-07-13T01:34:29.894Z\",\n            \"updatedAt\": \"2025-07-13T01:34:29.894Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get category by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/categories/6871f44db91eef951f5365b0",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"categories",
+								"6871f44db91eef951f5365b0"
+							]
+						},
+						"description": "## Endpoint Description\n\nThis endpoint retrieves the details of a specific category identified by its unique ID. It is a GET request that allows clients to obtain information about a category, including its name, creation date, and last updated date.\n\n### Request\n\n- **Method**: GET\n    \n- **URL**: `http://167.71.210.71:8000/api/categories/{categoryId}`\n    \n\n#### Path Parameters\n\n- `categoryId` (string): The unique identifier of the category you wish to retrieve. In this example, the ID is `6871f44db91eef951f5365b0`.\n    \n\n### Response\n\nThe response will be in JSON format and contains the following structure:\n\n- **success** (boolean): Indicates whether the request was successful.\n    \n- **message** (string): A message providing additional context about the request (if any).\n    \n- **data** (object): An object containing the details of the category:\n    \n    - `_id` (string): The unique identifier of the category.\n        \n    - `name` (string): The name of the category.\n        \n    - `createdAt` (string): The timestamp of when the category was created.\n        \n    - `updatedAt` (string): The timestamp of when the category was last updated.\n        \n    - `__v` (integer): The version key for the category document.\n        \n\n### Example Response\n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Category fetched successfully\",\n    \"data\": {\n        \"_id\": \"6871f44db91eef951f5365b0\",\n        \"name\": \"Electronics\",\n        \"createdAt\": \"2025-07-12T05:36:13.829Z\",\n        \"updatedAt\": \"2025-07-12T05:36:13.829Z\",\n        \"__v\": 0\n    }\n}\n\n ```\n\n### Notes\n\n- A successful response will have a status code of 200.\n    \n- Ensure that the `categoryId` provided in the request is valid to receive the corresponding category details."
+					},
+					"response": [
+						{
+							"name": "get category by id response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/categories/6871f44db91eef951f5365b0",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"categories",
+										"6871f44db91eef951f5365b0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "207"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"cf-49ejs+9PCJQPqgOL4XAfeiRgqn8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:48:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Category fetched successfully\",\n    \"data\": {\n        \"_id\": \"6871f44db91eef951f5365b0\",\n        \"name\": \"Electronics\",\n        \"createdAt\": \"2025-07-12T05:36:13.829Z\",\n        \"updatedAt\": \"2025-07-12T05:36:13.829Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Sazidul/Downloads/Mizuno-Wave-Rebellion-Pro-13-1-900x620.jpeg"
+								},
+								{
+									"key": "data",
+									"value": "{\n  \"name\": \"Pro Running Shoes\",\n  \"description\": \"Lightweight and comfortable running shoes for athletes.\",\n  \"price\": 89.99,\n  \"discount\": 20,\n  \"category\": \"6871f497b91eef951f5365ba\"\n}\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/products",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products"
+							]
+						},
+						"description": "## Add Product\n\nThis endpoint allows you to add a new product to the inventory. It accepts a file upload and product data as part of the request.\n\n### Request Parameters\n\nThe request must be made using `form-data` and should include the following parameters:\n\n- **file** (type: file): This parameter is used to upload an image or file associated with the product.\n    \n- **data** (type: text): This parameter should contain a JSON string with the product details.\n    \n\n### Expected JSON Structure for `data` Parameter\n\nThe `data` parameter should include the following fields:\n\n- `name`: (string) The name of the product.\n    \n- `description`: (string) A brief description of the product.\n    \n- `price`: (number) The original price of the product.\n    \n- `discount`: (number) The discount applied to the product. (optional)\n    \n- `status`: (string) The availability status of the product. (optional)\n    \n- `category`: (ObjectId) The category under which the product falls.\n    \n\n### Response Structure\n\nOn success, the API will return a `201 Created` status. Here is a sample json response:\n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"name\": \"Pro Running Shoes\",\n        \"description\": \"Lightweight and comfortable running shoes for athletes.\",\n        \"price\": 89.99,\n        \"discount\": 20,\n        \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752368868/Pro Running Shoes-1752368866763.jpg\",\n        \"status\": \"In Stock\",\n        \"productCode\": \"4nqzikrz-2oru4\",\n        \"category\": \"6871f497b91eef951f5365ba\",\n        \"_id\": \"687306e5ac47964047345551\",\n        \"createdAt\": \"2025-07-13T01:07:49.229Z\",\n        \"updatedAt\": \"2025-07-13T01:07:49.229Z\",\n        \"__v\": 0,\n        \"finalPrice\": 71.99\n    }\n}\n\n ```\n\n- `success`: (boolean) Indicates whether the product was successfully added.\n    \n- `message`: (string) A message providing additional information (may be empty).\n    \n- `data`: (object) Contains the details of the newly created product, including its `name`, `description`, `price`, and other attributes."
+					},
+					"response": [
+						{
+							"name": "create product response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/Sazidul/Downloads/Mizuno-Wave-Rebellion-Pro-13-1-900x620.jpeg"
+										},
+										{
+											"key": "data",
+											"value": "{\n  \"name\": \"Pro Running Shoes\",\n  \"description\": \"Lightweight and comfortable running shoes for athletes.\",\n  \"price\": 89.99,\n  \"discount\": 20,\n  \"category\": \"6871f497b91eef951f5365ba\"\n}\n",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/products",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"products"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "532"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"214-OEegEuPEVMTgMfDMSeO/QFBa6zI\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:50:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Product created successfully\",\n    \"data\": {\n        \"name\": \"Pro Running Shoes\",\n        \"description\": \"Lightweight and comfortable running shoes for athletes.\",\n        \"price\": 89.99,\n        \"discount\": 20,\n        \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752371428/Pro%20Running%20Shoes-1752371426555.jpg\",\n        \"status\": \"In Stock\",\n        \"productCode\": \"4nqzikrz-2oru4\",\n        \"category\": \"6871f497b91eef951f5365ba\",\n        \"_id\": \"687310e4ac4796404734557f\",\n        \"createdAt\": \"2025-07-13T01:50:28.680Z\",\n        \"updatedAt\": \"2025-07-13T01:50:28.680Z\",\n        \"__v\": 0,\n        \"finalPrice\": 71.99\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get all products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/products",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "sorter",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "Electronics",
+									"disabled": true
+								}
+							]
+						},
+						"description": "### API Endpoint: Get Products\n\nThis endpoint retrieves a list of products based on the specified search query and category.\n\n#### Request Parameters (optional)\n\n- **search** (query string): A string to search for specific products name.\n    \n- **category** (query string): The category of products to filter the results.\n    \n\n#### Response\n\nUpon a successful request, the API returns a JSON object with the following structure:\n\n- **success** (boolean): Indicates whether the request was successful.\n    \n- **message** (string): A message related to the request (may be empty).\n    \n- **data** (array): An array of product objects, each containing:\n    \n    - **_id** (string): Unique identifier for the product.\n        \n    - **name** (string): The name of the product.\n        \n    - **description** (string): A brief description of the product.\n        \n    - **price** (number): The original price of the product.\n        \n    - **discount** (number): The discount applied to the product.\n        \n    - **image** (string): URL of the product image.\n        \n    - **status** (string): The current status of the product ('In Stock', 'Stock Out').\n        \n    - **productCode** (string): A unique code generated for the product.\n        \n    - **category** (object): An object containing details about the product's category:\n        \n        - **_id** (string): Unique identifier for the category.\n            \n        - **name** (string): The name of the category.\n            \n        - **createdAt** (string): Timestamp of when the category was created.\n            \n        - **updatedAt** (string): Timestamp of when the category was last updated.\n            \n        - **__v** (number): Version key for the category.\n            \n    - **createdAt** (string): Timestamp of when the product was created.\n        \n    - **updatedAt** (string): Timestamp of when the product was last updated.\n        \n    - **__v** (number): Version key for the product.\n        \n    - **finalPrice** (number): The final price after any discounts.\n        \n\n#### Notes\n\n- The response will contain an array of products that match the search criteria within the specified category."
+					},
+					"response": [
+						{
+							"name": "get all products response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/products",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"products"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "sorter",
+											"disabled": true
+										},
+										{
+											"key": "category",
+											"value": "Electronics",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2376"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"948-mHIaIAHoaR2HtNHn4YmI3ifVpuE\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:49:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"All Products fetched successfully\",\n    \"data\": [\n        {\n            \"_id\": \"68726376e68fe556b09494b9\",\n            \"name\": \"Alpha Sorter\",\n            \"description\": \"An advanced device to organize small electronic parts.\",\n            \"price\": 129.99,\n            \"discount\": 10,\n            \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752327030/Alpha%20Sorter-1752327022557.jpg\",\n            \"status\": \"In Stock\",\n            \"productCode\": \"wgxcbjcq-0alport8\",\n            \"category\": {\n                \"_id\": \"6871f44db91eef951f5365b0\",\n                \"name\": \"Electronics\",\n                \"createdAt\": \"2025-07-12T05:36:13.829Z\",\n                \"updatedAt\": \"2025-07-12T05:36:13.829Z\",\n                \"__v\": 0\n            },\n            \"createdAt\": \"2025-07-12T13:30:30.473Z\",\n            \"updatedAt\": \"2025-07-12T13:30:30.473Z\",\n            \"__v\": 0,\n            \"finalPrice\": 116.99\n        },\n        {\n            \"_id\": \"68728f1e03357d28c0135fdd\",\n            \"name\": \"Kids Puzzle Set\",\n            \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\n            \"price\": 180,\n            \"discount\": 6,\n            \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752338206/Kids%20Puzzle%20Set-1752338202340.jpg\",\n            \"status\": \"Stock Out\",\n            \"productCode\": \"g673ioqu-4puzz7\",\n            \"category\": {\n                \"_id\": \"6871f48ab91eef951f5365b8\",\n                \"name\": \"Toys\",\n                \"createdAt\": \"2025-07-12T05:37:14.794Z\",\n                \"updatedAt\": \"2025-07-12T05:37:14.794Z\",\n                \"__v\": 0\n            },\n            \"createdAt\": \"2025-07-12T16:36:46.824Z\",\n            \"updatedAt\": \"2025-07-13T01:30:28.314Z\",\n            \"__v\": 0,\n            \"finalPrice\": 169.2\n        },\n        {\n            \"_id\": \"6872f20228cd83b895e78cab\",\n            \"name\": \"Smart Kettle\",\n            \"description\": \"Boils water with temperature control via app.\",\n            \"price\": 59.99,\n            \"discount\": 15,\n            \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752363523/Smart%20Kettle-1752363518556.png\",\n            \"status\": \"In Stock\",\n            \"productCode\": \"56s8z05g-2artett8\",\n            \"category\": {\n                \"_id\": \"6872f0a628cd83b895e78c99\",\n                \"name\": \"Home Appliances\",\n                \"createdAt\": \"2025-07-12T23:32:54.414Z\",\n                \"updatedAt\": \"2025-07-12T23:32:54.414Z\",\n                \"__v\": 0\n            },\n            \"createdAt\": \"2025-07-12T23:38:43.013Z\",\n            \"updatedAt\": \"2025-07-12T23:38:43.013Z\",\n            \"__v\": 0,\n            \"finalPrice\": 50.99\n        },\n        {\n            \"_id\": \"687306e5ac47964047345551\",\n            \"name\": \"Pro Running Shoes\",\n            \"description\": \"Lightweight and comfortable running shoes for athletes.\",\n            \"price\": 89.99,\n            \"discount\": 20,\n            \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752368868/Pro%20Running%20Shoes-1752368866763.jpg\",\n            \"status\": \"In Stock\",\n            \"productCode\": \"4nqzikrz-2oru4\",\n            \"category\": {\n                \"_id\": \"6871f497b91eef951f5365ba\",\n                \"name\": \"Sports Equipment\",\n                \"createdAt\": \"2025-07-12T05:37:27.241Z\",\n                \"updatedAt\": \"2025-07-12T05:37:27.241Z\",\n                \"__v\": 0\n            },\n            \"createdAt\": \"2025-07-13T01:07:49.229Z\",\n            \"updatedAt\": \"2025-07-13T01:07:49.229Z\",\n            \"__v\": 0,\n            \"finalPrice\": 71.99\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get product by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/products/68728f1e03357d28c0135fdd",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"68728f1e03357d28c0135fdd"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						},
+						"description": "## API Endpoint: Get Product Details\n\n### Request Method\n\n`GET`\n\n### Endpoint\n\n`http://167.71.210.71:8000/api/products/{productId}`\n\n### Purpose\n\nThis endpoint retrieves detailed information about a specific product identified by its unique product ID. It is useful for obtaining product details such as name, description, pricing, and associated category information.\n\n### Request Parameters\n\n- **productId** (path parameter): The unique identifier for the product you wish to retrieve. Replace `{productId}` in the endpoint URL with the actual product ID.\n    \n\n### Expected Response Format\n\nOn a successful request, the API returns a JSON object with the following structure:\n\n- **success** (boolean): Indicates whether the request was successful.\n    \n- **message** (string): A message providing additional information about the request (may be empty).\n    \n- **data** (object): Contains detailed information about the product:\n    \n    - **_id** (string): The unique identifier of the product.\n        \n    - **name** (string): The name of the product.\n        \n    - **description** (string): A description of the product.\n        \n    - **price** (number): The original price of the product.\n        \n    - **discount** (number): The discount applied to the product.\n        \n    - **image** (string): URL of the product image.\n        \n    - **status** (string): The current status of the product ('In Stock', 'Stock Out').\n        \n    - **productCode** (string): A unique code generated for the product.\n        \n    - **category** (object): Details about the product's category:\n        \n        - **_id** (string): The unique identifier of the category.\n            \n        - **name** (string): The name of the category.\n            \n        - **createdAt** (string): Timestamp of when the category was created.\n            \n        - **updatedAt** (string): Timestamp of when the category was last updated.\n            \n        - **__v** (number): Version key for the category.\n            \n    - **createdAt** (string): Timestamp of when the product was created.\n        \n    - **updatedAt** (string): Timestamp of when the product was last updated.\n        \n    - **__v** (number): Version key for the product.\n        \n    - **finalPrice** (number): The final price of the product after applying any discounts.\n        \n\n### Example Response\n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Product fetched successfully\",\n    \"data\": {\n        \"_id\": \"68728f1e03357d28c0135fdd\",\n        \"name\": \"Kids Puzzle Set\",\n        \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\n        \"price\": 180,\n        \"discount\": 6,\n        \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752338206/Kids Puzzle Set-1752338202340.jpg\",\n        \"status\": \"Stock Out\",\n        \"productCode\": \"g673ioqu-4puzz7\",\n        \"category\": {\n            \"_id\": \"6871f48ab91eef951f5365b8\",\n            \"name\": \"Toys\",\n            \"createdAt\": \"2025-07-12T05:37:14.794Z\",\n            \"updatedAt\": \"2025-07-12T05:37:14.794Z\",\n            \"__v\": 0\n        },\n        \"createdAt\": \"2025-07-12T16:36:46.824Z\",\n        \"updatedAt\": \"2025-07-13T00:53:35.287Z\",\n        \"__v\": 0,\n        \"finalPrice\": 169.2\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "get product by id resnponse",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "text"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/products/68728f1e03357d28c0135fdd",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"products",
+										"68728f1e03357d28c0135fdd"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "638"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"27e-s8EvV4s94yOVWALOE3AHdx3xSds\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:49:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Product fetched successfully\",\n    \"data\": {\n        \"_id\": \"68728f1e03357d28c0135fdd\",\n        \"name\": \"Kids Puzzle Set\",\n        \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\n        \"price\": 180,\n        \"discount\": 6,\n        \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752338206/Kids%20Puzzle%20Set-1752338202340.jpg\",\n        \"status\": \"Stock Out\",\n        \"productCode\": \"g673ioqu-4puzz7\",\n        \"category\": {\n            \"_id\": \"6871f48ab91eef951f5365b8\",\n            \"name\": \"Toys\",\n            \"createdAt\": \"2025-07-12T05:37:14.794Z\",\n            \"updatedAt\": \"2025-07-12T05:37:14.794Z\",\n            \"__v\": 0\n        },\n        \"createdAt\": \"2025-07-12T16:36:46.824Z\",\n        \"updatedAt\": \"2025-07-13T01:30:28.314Z\",\n        \"__v\": 0,\n        \"finalPrice\": 169.2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\r\n    \"discount\": 6,\r\n    \"status\": \"Stock Out\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://167.71.210.71:8000/api/products/68728f1e03357d28c0135fdd",
+							"protocol": "http",
+							"host": [
+								"167",
+								"71",
+								"210",
+								"71"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"products",
+								"68728f1e03357d28c0135fdd"
+							]
+						},
+						"description": "### PATCH /api/products/{id}\n\nThis endpoint allows you to update the details of a specific product identified by its unique ID. It is primarily used to modify product attributes such as description, discount, and status.\n\n#### Request Body Parameters\n\nThe request body must be in JSON format and can include the following parameters:\n\n- **description** (string): A brief description of the product (optional).\n    \n- **discount** (integer): The discount percentage applied to the product (optional).\n    \n- **status** (string): The current availability status of the product (optional).\n    \n\n##### Example Request Body\n\n``` json\n{\n  \"description\": \"Colorful jigsaw puzzles to imp ...\",\n  \"discount\": 6,\n  \"status\": \"Stock Out\"\n}\n\n ```\n\n#### Response Structure\n\nUpon a successful update, the server will respond with a status code of 200 and a JSON object containing the following fields:\n\n- **success** (boolean): Indicates whether the update was successful.\n    \n- **message** (string): A message providing additional information about the request (if any).\n    \n- **data** (object): An object containing the updated product details:\n    \n    - **_id** (string): The unique identifier of the product.\n        \n    - **name** (string): The name of the product.\n        \n    - **description** (string): The updated description of the product.\n        \n    - **price** (number): The price of the product.\n        \n    - **discount** (number): The updated discount percentage.\n        \n    - **image** (string): The URL of the product image.\n        \n    - **status** (string): The updated availability status of the product.\n        \n    - **productCode** (string): The product code.\n        \n    - **category** (string): The category to which the product belongs.\n        \n    - **createdAt** (string): The timestamp of when the product was created.\n        \n    - **updatedAt** (string): The timestamp of when the product was last updated.\n        \n    - **__v** (integer): The version key for the product document.\n        \n    - **finalPrice** (number): The final price after applying the discount.\n        \n\n##### Example Response\n\n``` json\n{\n    \"success\": true,\n    \"message\": \"Product updated successfully\",\n    \"data\": {\n        \"_id\": \"68728f1e03357d28c0135fdd\",\n        \"name\": \"Kids Puzzle Set\",\n        \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\n        \"price\": 180,\n        \"discount\": 6,\n        \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752338206/Kids Puzzle Set-1752338202340.jpg\",\n        \"status\": \"Stock Out\",\n        \"productCode\": \"g673ioqu-4puzz7\",\n        \"category\": \"6871f48ab91eef951f5365b8\",\n        \"createdAt\": \"2025-07-12T16:36:46.824Z\",\n        \"updatedAt\": \"2025-07-13T01:30:28.314Z\",\n        \"__v\": 0,\n        \"finalPrice\": 169.2\n    }\n}\n\n ```"
+					},
+					"response": [
+						{
+							"name": "update product response",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\r\n    \"discount\": 6,\r\n    \"status\": \"Stock Out\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://167.71.210.71:8000/api/products/68728f1e03357d28c0135fdd",
+									"protocol": "http",
+									"host": [
+										"167",
+										"71",
+										"210",
+										"71"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"products",
+										"68728f1e03357d28c0135fdd"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "530"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"212-JsPJXUchoLqEe47dsHJ4zhV1sZA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 13 Jul 2025 01:49:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"message\": \"Product updated successfully\",\n    \"data\": {\n        \"_id\": \"68728f1e03357d28c0135fdd\",\n        \"name\": \"Kids Puzzle Set\",\n        \"description\": \"Colorful jigsaw puzzles to improve kids' cognitive skills.\",\n        \"price\": 180,\n        \"discount\": 6,\n        \"image\": \"https://res.cloudinary.com/dvrqc1qdm/image/upload/v1752338206/Kids%20Puzzle%20Set-1752338202340.jpg\",\n        \"status\": \"Stock Out\",\n        \"productCode\": \"g673ioqu-4puzz7\",\n        \"category\": \"6871f48ab91eef951f5365b8\",\n        \"createdAt\": \"2025-07-12T16:36:46.824Z\",\n        \"updatedAt\": \"2025-07-13T01:49:43.285Z\",\n        \"__v\": 0,\n        \"finalPrice\": 169.2\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
