@@ -4,7 +4,7 @@ A comprehensive backend system for product lifecycle management built with Node.
 
 ## 🚀 Live Demo
 
-The API is currently deployed in digitalOcean and accessible at:
+The API is currently deployed in DigitalOcean and accessible at:
 
 - **HTTP**: http://167.71.210.71:8000
 - **HTTPS**: https://enemies-porter-sense-tumor.trycloudflare.com
