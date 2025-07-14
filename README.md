@@ -64,7 +64,10 @@ You can test the endpoints using the provided Postman collection file (`postman_
     pnpm install
     ```
 
-3. **Environment Configuration**
+3. **Create uploads folder**
+   Create an `uploads` folder in the root directory of the project. This is required for file uploads to work locally.
+
+4. **Environment Configuration**
    Create a `.env` file in the root directory:
 
     ```env
@@ -76,7 +79,7 @@ You can test the endpoints using the provided Postman collection file (`postman_
     CLOUDINARY_SECRET=your_cloudinary_secret
     ```
 
-4. **Run the application**
+5. **Run the application**
 
     ```bash
     # Development mode
