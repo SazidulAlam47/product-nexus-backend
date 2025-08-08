@@ -13,7 +13,7 @@ async function main() {
         await mongoose.connect(config.database_url);
 
         server = app.listen(port, () => {
-            console.log('Apollo Health Care Server is listening on port', port);
+            console.log('Product Nexus Server is listening on port', port);
         });
     } catch (error) {
         console.log(error);
